@@ -55,7 +55,7 @@ template <typename T>
 void LinkedList<T>::display() {
     Node<T> *aux = head;
     while (aux != nullptr) {
-        std::cout << aux->data << ", ";
+        std::cout << *(aux->data) << ", ";
         aux = aux->next;
     }
 }

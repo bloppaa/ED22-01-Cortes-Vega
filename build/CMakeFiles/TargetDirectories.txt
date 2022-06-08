@@ -1,0 +1,9 @@
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/Experimental.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/Nightly.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/Continuous.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/NightlyMemoryCheck.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/taller.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/PACKAGE.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,10 @@
+^C:\USERS\PC\DOCUMENTS\UCN\2022-1\ESTRUCTURA DE DATOS\ED22-01-CORTES-VEGA\BUILD\CMAKEFILES\9E2197A118FB71DB0CE0D453FE8A1A82\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega" "-BC:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/pc/Documents/UCN/2022-1/Estructura de Datos/ED22-01-Cortes-Vega/build/taller.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

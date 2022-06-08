@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\build\CMakeFiles\9e2197a118fb71db0ce0d453fe8a1a82\Nightly.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\build\CMakeFiles\Nightly" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{52098DD4-DB4A-32CA-A7F2-C8D464ED1B6A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

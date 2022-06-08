@@ -79,6 +79,6 @@ public:
     void display();
 };
 
-#include "LinkedList.tpp"
+#include "../LinkedList.tpp"
 
 #endif // LINKED_LIST_H

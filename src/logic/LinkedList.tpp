@@ -36,9 +36,11 @@ T LinkedList<T>::pop() {
 
 template <typename T>
 T LinkedList<T>::get(int i) {
+    // Compatibilidad con índices negativos
     if (i < 0) {
         i += size();
     }
+    // Índice fuera de rango
     if (i < 0 || i >= size()) {
         throw std::invalid_argument("Error: index out of range");
     }
@@ -53,9 +55,11 @@ T LinkedList<T>::get(int i) {
 
 template <typename T>
 void LinkedList<T>::display() {
-    Node<T> *aux = head;
-    while (aux != nullptr) {
-        std::cout << *(aux->data) << ", ";
-        aux = aux->next;
+    if (isEmpty())
+        std::cout << "The list is empty" << std::endl;
+    else {
+        for (Node* node = head; node != nullptr; node = node->next) {
+            std::cout << *(aux->data) << ", ";
+        }
     }
 }

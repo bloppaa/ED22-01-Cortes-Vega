@@ -18,9 +18,11 @@ class Detector
     enum Mode { Default, Daimler } m;
     HOGDescriptor hog, hog_d;
 public:
-    Detector() : m(Default), hog(), hog_d(Size(48, 96), Size(16, 16), Size(8, 8), Size(8, 8), 9) {
-        hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
-        hog_d.setSVMDetector(HOGDescriptor::getDaimlerPeopleDetector());
+    Detector() : m(Default), hog(), hog_d(
+        Size(48, 96), Size(16, 16), Size(8, 8), Size(8, 8), 9
+        ) {
+            hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
+            hog_d.setSVMDetector(HOGDescriptor::getDaimlerPeopleDetector());
     }    
 
     void toggleMode();

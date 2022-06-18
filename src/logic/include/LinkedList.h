@@ -10,15 +10,10 @@ template <typename T>
 class Node
 {
 public:
-    T *data;
+    T data;
     Node<T> *next;
 
-    // Constructor predeterminado
-    Node<T>() {
-        data, next = nullptr;
-    }
-
-    Node<T>(T *data) {
+    Node<T>(T data) {
         this->data = data;
         next = nullptr;
     }
@@ -60,7 +55,14 @@ public:
      * 
      * @param data El elemento que se añadirá.
      */
-    void add(T *data);
+    void push(T data);
+
+    /**
+     * @brief Añade un nuevo elemento al final de la lista.
+     * 
+     * @param data El elemento que se añadirá.
+     */
+    void pushBack(T data);
 
     /**
      * @brief Remueve y retorna el primer elemento de la lista.

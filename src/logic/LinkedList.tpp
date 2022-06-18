@@ -17,21 +17,40 @@ int LinkedList<T>::size() {
 }
 
 template <typename T>
-void LinkedList<T>::add(T *data) {
+void LinkedList<T>::push(T data) {
     Node<T> *node = new Node<T>(data);
     node->next = head;
     head = node;
 }
 
 template <typename T>
-T LinkedList<T>::pop() {
-    Node<T> *aux = head;
-    T auxData = *(aux->data);
-    head = aux->next;
+void LinkedList<T>::pushBack(T data) {
+    Node<T> *node = new Node<T>(data);
+    if (isEmpty()) {
+        head = node;
+    }
+    else {
+        Node<T> *aux = head;
+        while (aux->next != nullptr) {
+            aux = aux->next;
+        }
+        aux->next = node;
+    }
+}
 
-    delete aux->data;
-    delete aux;
-    return auxData;
+template <typename T>
+T LinkedList<T>::pop() {
+    if (isEmpty()) {
+        return;
+    }
+    else {
+        Node<T> *aux = head;
+        T data = aux->data;
+        head = aux->next;
+
+        delete aux;
+        return data;
+    }
 }
 
 template <typename T>
@@ -49,7 +68,7 @@ T LinkedList<T>::get(int i) {
         for (int j = 0; j < i; j++) {
             aux = aux->next;
         }
-        return *(aux->data);
+        return aux->data;
     }
 }
 
@@ -59,7 +78,7 @@ void LinkedList<T>::display() {
         std::cout << "The list is empty" << std::endl;
     else {
         for (Node* node = head; node != nullptr; node = node->next) {
-            std::cout << *(aux->data) << ", ";
+            std::cout << aux->data << std::endl;
         }
     }
 }

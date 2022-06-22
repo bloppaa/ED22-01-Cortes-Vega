@@ -17,14 +17,14 @@ int LinkedList<T>::size() {
 }
 
 template <typename T>
-void LinkedList<T>::push(T data) {
+void LinkedList<T>::push(T *data) {
     Node<T> *node = new Node<T>(data);
     node->next = head;
     head = node;
 }
 
 template <typename T>
-void LinkedList<T>::pushBack(T data) {
+void LinkedList<T>::pushBack(T *data) {
     Node<T> *node = new Node<T>(data);
     if (isEmpty()) {
         head = node;
@@ -54,7 +54,7 @@ T LinkedList<T>::pop() {
 }
 
 template <typename T>
-T LinkedList<T>::get(int i) {
+T* LinkedList<T>::get(int i) {
     // Compatibilidad con índices negativos
     if (i < 0) {
         i += size();

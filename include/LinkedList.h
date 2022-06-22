@@ -10,10 +10,10 @@ template <typename T>
 class Node
 {
 public:
-    T data;
+    T *data;
     Node<T> *next;
 
-    Node<T>(T data) {
+    Node<T>(T *data) {
         this->data = data;
         next = nullptr;
     }
@@ -55,14 +55,14 @@ public:
      * 
      * @param data El elemento que se añadirá.
      */
-    void push(T data);
+    void push(T *data);
 
     /**
      * @brief Añade un nuevo elemento al final de la lista.
      * 
      * @param data El elemento que se añadirá.
      */
-    void pushBack(T data);
+    void pushBack(T *data);
 
     /**
      * @brief Remueve y retorna el primer elemento de la lista.
@@ -78,7 +78,7 @@ public:
      *          negativos.
      * @return T El elemento en la i-ésima posición.
      */
-    T get(int i);
+    T* get(int i);
 
     /**
      * @brief Muestra los elementos de la lista.

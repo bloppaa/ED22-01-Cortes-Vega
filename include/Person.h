@@ -1,31 +1,32 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include <opencv2/objdetect.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/videoio.hpp>
-
+/**
+ * @brief Clase que guarda información de una persona.
+ * 
+ */
 class Person
-{
-    int xStart, yStart;
-    int xEnd, yEnd;
-    int xCenter, yCenter;
+{   
+    int ID;
+    int x, y;
+    int framesDissappeared;
 
 public:
-    Person(cv::Rect&);
+    Person(int ID, int x, int y);
 
-    int getXStart();
+    int getX();
 
-    int getYStart();
+    int getY();
 
-    int getXEnd();
+    void setX(int x);
 
-    int getYEnd();
+    void setY(int y);
 
-    int getXCenter();
+    int getFramesDissappeared();
 
-    int getYCenter();
+    void setFramesDissappeared(int frames);
+
+
 };
 
 #endif // PERSON_H

@@ -7,7 +7,13 @@ enable_testing()
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS} include)
 
-add_executable(taller src/Person.cpp src/Detector.cpp src/main.cpp)
+add_executable(
+    taller
+    src/Person.cpp
+    src/Detector.cpp
+    src/CentroidTracker.cpp
+    src/main.cpp
+)
 
 target_link_libraries(taller ${OpenCV_LIBS})
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

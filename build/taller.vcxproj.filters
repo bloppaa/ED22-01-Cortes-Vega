@@ -7,6 +7,9 @@
     <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\Detector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\CentroidTracker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

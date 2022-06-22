@@ -315,6 +315,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\Person.cpp" />
     <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\Detector.cpp" />
+    <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\CentroidTracker.cpp" />
     <ClCompile Include="C:\Users\pc\Documents\UCN\2022-1\Estructura de Datos\ED22-01-Cortes-Vega\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

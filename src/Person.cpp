@@ -1,34 +1,21 @@
 #include "Person.h"
 
-Person::Person(cv::Rect &r) {
-    xStart = r.x;
-    yStart = r.y;
-    xEnd = r.x + r.width;
-    yEnd = r.y + r.height;
-    xCenter = r.x + ((int)r.width / 2);
-    yCenter = r.y + ((int)r.height / 2);
+Person::Person(int ID, int x, int y) {
+    this->ID = ID;
+    this->x = x;
+    this->y = y;
 }
 
-int Person::getXStart() {
-    return xStart;
-}
+int Person::getX() { return x; }
 
-int Person::getYStart() {
-    return yStart;
-}
+int Person::getY() { return y; }
 
-int Person::getXEnd() {
-    return xEnd;
-}
+void Person::setX(int x) { this->x = x; }
 
-int Person::getYEnd() {
-    return yEnd;
-}
+void Person::setY(int y) { this->y = y; }
 
-int Person::getXCenter() {
-    return xCenter;
-}
+int Person::getFramesDissappeared() { return framesDissappeared; }
 
-int Person::getYCenter() {
-    return yCenter;
+void Person::setFramesDissappeared(int frames) {
+    this->framesDissappeared = frames;
 }

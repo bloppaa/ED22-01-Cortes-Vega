@@ -1,6 +1,11 @@
 #ifndef CENTROID_TRACKER_H
 #define CENTROID_TRACKER_H
 
+#include <opencv2/objdetect.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/videoio.hpp>
+
 #include "LinkedList.h"
 #include "Person.h"
 
@@ -25,26 +30,26 @@ public:
     /**
      * @brief Ingresa una persona nueva a la lista de personas.
      * 
-     * @param x Coordenada X del centroide inicial de la persona.
-     * @param y Coordenada Y del centroide inicial de la persona.
+     * @param x Coordenada x del centroide inicial de la persona.
+     * @param y Coordenada y del centroide inicial de la persona.
      */
-    void register(int x, int y);
+    void regist(int x, int y);
 
     /**
      * @brief Elimina la persona especificada de la lista de personas.
      * 
      * @param personID El ID de la persona.
      */
-    void deregister(int personID);
+    void deregist(int personID);
 
     /**
-     * @brief Método principal que hace todos los cálculos necesarios
-     * para hacer el seguimiento de centroides.
+     * @brief Actualiza el centroide de una persona con respecto al frame
+     * anterior. También registra y elimina personas según sea necesario.
      * 
      * @param rects La lista de rectángulos detectados por el detector.
      * @return LinkedList<Person>* La lista de personas.
      */
-    LinkedList<Person> *update(LinkedList<Rect> rects);
+    LinkedList<Person> *update(LinkedList<cv::Rect> rects);
 };
 
 #endif // CENTROID_TRACKER_H

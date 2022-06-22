@@ -6,8 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include "logic/include/Detector.h"
-#include "logic/include/Person.h"
+#include "Detector.h"
+#include "Person.h"
 
 using namespace cv;
 

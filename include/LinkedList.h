@@ -87,6 +87,6 @@ public:
     void display();
 };
 
-#include "../LinkedList.tpp"
+#include "../src/LinkedList.tpp"
 
 #endif // LINKED_LIST_H

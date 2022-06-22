@@ -8,7 +8,7 @@
 
 using namespace cv;
 
-#include "include/Detector.h"
+#include "Detector.h"
 
 void Detector::toggleMode() {
     m = (m == Default ? Daimler : Default);

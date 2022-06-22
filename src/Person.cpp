@@ -1,4 +1,4 @@
-#include "include/Person.h"
+#include "Person.h"
 
 Person::Person(cv::Rect &r) {
     xStart = r.x;

@@ -9,6 +9,7 @@ include_directories(${OpenCV_INCLUDE_DIRS} include)
 
 add_executable(
     taller
+    src/Set.cpp
     src/Person.cpp
     src/Detector.cpp
     src/CentroidTracker.cpp

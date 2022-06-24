@@ -228,5 +228,9 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
         // (2) Ordena esta lista según <rows>
         vector<int> cols = argmin(distances);
         cols = indexsort(cols, rows);
+
+        // ----------------------------------------------------------------
+
+        
     }
 }

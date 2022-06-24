@@ -6,6 +6,8 @@ Person::Person(int ID, int x, int y) {
     this->y = y;
 }
 
+int Person::getID() { return ID;}
+
 int Person::getX() { return x; }
 
 int Person::getY() { return y; }

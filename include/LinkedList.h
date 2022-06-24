@@ -28,11 +28,13 @@ template <typename T>
 class LinkedList
 {
     Node<T> *head;
+    int size;
 
 public:
     // Constructor predeterminado
     LinkedList<T>() {
         head = nullptr;
+        size = 0;
     }
 
     /**
@@ -72,13 +74,20 @@ public:
     T pop();
 
     /**
+     * @brief Busca el elemento con la ID especificada y lo remueve de la lista.
+     * 
+     * @param key La ID del elemento.
+     */
+    void remove(int ID);
+
+    /**
      * @brief Obtiene el i-ésismo elemento de la lista.
      * 
      * @param i El índice del elemento. Este método también acepta índices
      *          negativos.
      * @return T El elemento en la i-ésima posición.
      */
-    T* get(int i);
+    T *get(int i);
 
     /**
      * @brief Muestra los elementos de la lista.

@@ -7,13 +7,7 @@ bool LinkedList<T>::isEmpty() {
 
 template <typename T>
 int LinkedList<T>::size() {
-    int count = 0;
-    Node<T> *aux = head;
-    while (aux != nullptr) {
-        count++;
-        aux = aux->next;
-    }
-    return count;
+    return size;
 }
 
 template <typename T>
@@ -21,6 +15,7 @@ void LinkedList<T>::push(T *data) {
     Node<T> *node = new Node<T>(data);
     node->next = head;
     head = node;
+    size++;
 }
 
 template <typename T>
@@ -36,6 +31,7 @@ void LinkedList<T>::pushBack(T *data) {
         }
         aux->next = node;
     }
+    size++;
 }
 
 template <typename T>
@@ -48,13 +44,37 @@ T LinkedList<T>::pop() {
         T data = aux->data;
         head = aux->next;
 
+        delete aux->data;
         delete aux;
+        size--;
+
         return data;
     }
 }
 
 template <typename T>
-T* LinkedList<T>::get(int i) {
+void LinkedList<T>::remove(int ID) {
+    Node<T> *aux = head;
+    if (aux->data->getID() == ID) {
+        head = aux->next;
+        delete aux->data;
+        delete aux;
+    }
+    else {
+        while (aux->next != nullptr) {
+            if (aux->next->data->getID() == ID) {
+                Node<T> *aux2 = aux->next;
+                aux->next = aux->next->next;
+                delete aux2->data;
+                delete aux2;
+                return;
+            }
+        }
+    }
+}
+
+template <typename T>
+T *LinkedList<T>::get(int i) {
     // Compatibilidad con índices negativos
     if (i < 0) {
         i += size();
@@ -77,7 +97,7 @@ void LinkedList<T>::display() {
     if (isEmpty())
         std::cout << "The list is empty" << std::endl;
     else {
-        for (Node* node = head; node != nullptr; node = node->next) {
+        for (Node<T> *node = head; node != nullptr; node = node->next) {
             std::cout << aux->data << std::endl;
         }
     }

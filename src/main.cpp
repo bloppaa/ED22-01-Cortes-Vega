@@ -11,6 +11,7 @@
 
 using namespace cv;
 
+/*
 int main(int argc, char **argv) {
     Detector detector;
     Mat image;
@@ -39,3 +40,4 @@ int main(int argc, char **argv) {
     
     return 0;
 }
+*/

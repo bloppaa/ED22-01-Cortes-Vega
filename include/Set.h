@@ -28,6 +28,13 @@ public:
     Set() : head(nullptr) {}
 
     /**
+     * @brief Retorna el nodo al frente de la lista.
+     * 
+     * @return S_Node* 
+     */
+    S_Node* front();
+
+    /**
      * @brief Verifica si el conjunto está vacío.
      * 
      * @return true si el conjunto no tiene elementos.
@@ -42,6 +49,15 @@ public:
      * @param data El elemento que se ingresará.
      */
     void add(int data);
+
+    /**
+     * @brief Verifica si el elemento se encuentra en el conjunto.
+     * 
+     * @param data El elemento.
+     * @return true si el elemento se encuentra en el conjunto.
+     * @return false 
+     */
+    bool contains(int data);
 
     /**
      * @brief Muestra los elementos del conjunto.

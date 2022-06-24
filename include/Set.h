@@ -60,6 +60,15 @@ public:
     bool contains(int data);
 
     /**
+     * @brief Retorna un nuevo conjunto con todos los elementos del primer
+     * conjunto salvo los elementos del segundo conjunto.
+     * 
+     * @param set El segundo conjunto.
+     * @return Set El conjunto diferencia.
+     */
+    Set difference(Set set);
+
+    /**
      * @brief Muestra los elementos del conjunto.
      * 
      */

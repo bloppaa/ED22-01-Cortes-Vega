@@ -1,7 +1,7 @@
 #include "CentroidTracker.h"
-#include "Set.h"
 
 #include <cmath>
+#include <set>
 
 using namespace std;
 
@@ -232,20 +232,6 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
 
         // ----------------------------------------------------------------
 
-        Set usedRows = Set();
-        Set usedCols = Set();
-
-        for (int i = 0; i < rows.size(); i++) {
-            if (usedRows.contains(rows[i]) || usedCols.contains(cols[i]))
-                continue;
-            
-            Person* person = people->get(rows[i]);
-            person->setX(inputCentroids[cols[i]].first);
-            person->setY(inputCentroids[cols[i]].second);
-            person->setFramesDissappeared(0);
-
-            usedRows.add(rows[i]);
-            usedCols.add(cols[i]);
-        }
+        
     }
 }

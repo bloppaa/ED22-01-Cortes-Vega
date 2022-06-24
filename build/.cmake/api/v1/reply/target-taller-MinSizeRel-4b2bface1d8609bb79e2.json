@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Debug/taller.exe"
+			"path" : "MinSizeRel/taller.exe"
 		},
 		{
-			"path" : "Debug/taller.pdb"
+			"path" : "MinSizeRel/taller.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +35,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG"
 				}
 			],
 			"includes" : 
@@ -90,91 +90,91 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455d.lib",
+				"fragment" : "C:\\opencv\\build\\x64\\vc15\\lib\\opencv_world455.lib",
 				"role" : "libraries"
 			},
 			{

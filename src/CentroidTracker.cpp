@@ -232,26 +232,37 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
 
         // ----------------------------------------------------------------
 
+        // Para saber si necesitamos actualizar, registrar o eliminar una
+        // persona, hay que revisar cuáles índices de filas y columnas ya
+        // hemos revisado
         Set usedRows = Set();
         Set usedCols = Set();
 
         for (int i = 0; i < rows.size(); i++) {
+            // Si ya se revisaron, pasa a la siguiente iteración
             if (usedRows.contains(rows[i]) || usedCols.contains(cols[i])) {
                 continue;
             }
             
+            // De lo contrario, obtiene la persona, actualiza su centroide,
+            // y reinicia los frames que estuvo desaparecida
             Person* person = people->get(rows[i]);
             person->setX(inputCentroids[cols[i]].first);
             person->setY(inputCentroids[cols[i]].second);
             person->setFramesDissappeared(0);
 
+            // Indicar que ya revisamos las filas y columnas
             usedRows.add(rows[i]);
             usedCols.add(cols[i]);
         }
 
+        // Filas y columnas que NO han sido revisadas
         Set unusedRows = Set(distances.size()).difference(usedRows);
         Set unusedCols = Set(distances[0].size()).difference(usedCols);
 
+        // Si el número de centroides actuales es mayor al número de centroides
+        // que se recibieron, hay que verificar que si las personas
+        // potencialmente desaparecieron
         if (distances.size() > distances[0].size()) {
             S_Node *node = unusedRows.front();
             while (node != nullptr) {
@@ -264,6 +275,9 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
                 node = node->next;
             }
         }
+        // En caso contrario, si la cantidad de centroides que se reciben es
+        // mayor a la cantidad de centroides actuales, entonces hay que
+        // registrar las nuevas personas
         else {
             S_Node *node = unusedCols.front();
             while (node != nullptr) {
@@ -274,5 +288,6 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
             }
         }
     }
+    // Finalmente retorna la lista con las personas en el frame actual
     return people;
 }

@@ -38,6 +38,13 @@ public:
     }
 
     /**
+     * @brief Retorna el nodo al frente de la lista.
+     * 
+     * @return T* El nodo al frente de la lista.
+     */
+    Node<T>* front();
+
+    /**
      * @brief Verifica si la lista está vacía.
      * 
      * @return true si la lista no tiene elementos.

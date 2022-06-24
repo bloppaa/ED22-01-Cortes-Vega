@@ -6,6 +6,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 
+#include <vector>
 #include "LinkedList.h"
 #include "Person.h"
 
@@ -49,7 +50,7 @@ public:
      * @param rects La lista de rectángulos detectados por el detector.
      * @return LinkedList<Person>* La lista de personas.
      */
-    LinkedList<Person> *update(LinkedList<cv::Rect> rects);
+    LinkedList<Person> *update(std::vector<cv::Rect> rects);
 };
 
 #endif // CENTROID_TRACKER_H

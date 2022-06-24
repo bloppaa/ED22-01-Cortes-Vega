@@ -4,6 +4,7 @@ Person::Person(int ID, int x, int y) {
     this->ID = ID;
     this->x = x;
     this->y = y;
+    framesDissappeared = 0;
 }
 
 int Person::getID() { return ID;}

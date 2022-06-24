@@ -1,6 +1,11 @@
 #include <iostream>
 
 template <typename T>
+Node<T>* front() {
+    return head;
+}
+
+template <typename T>
 bool LinkedList<T>::isEmpty() {
     return head == nullptr;
 }
@@ -67,10 +72,11 @@ void LinkedList<T>::remove(int ID) {
                 aux->next = aux->next->next;
                 delete aux2->data;
                 delete aux2;
-                return;
+                break;
             }
         }
     }
+    size--;
 }
 
 template <typename T>

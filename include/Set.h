@@ -27,12 +27,22 @@ private:
 public:
     Set() : head(nullptr) {}
 
+    // Constructor con valores iniciales
+    Set(int n);
+
     /**
      * @brief Retorna el nodo al frente de la lista.
      * 
      * @return S_Node* 
      */
     S_Node* front();
+
+    /**
+     * @brief Retorna el número de elementos del conjunto.
+     * 
+     * @return int El número de elementos del conjunto.
+     */
+    int size();
 
     /**
      * @brief Verifica si el conjunto está vacío.

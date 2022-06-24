@@ -2,8 +2,24 @@
 
 #include <iostream>
 
+Set::Set(int n) {
+    head = nullptr;
+    for (int i = 0; i < n; i++)
+        add(i);
+}
+
 S_Node* Set::front() {
     return head;
+}
+
+int Set::size() {
+    int count = 0;
+    S_Node* node = head;
+    while (node != nullptr) {
+        count++;
+        node = node->next;
+    }
+    return count;
 }
 
 bool Set::isEmpty() {

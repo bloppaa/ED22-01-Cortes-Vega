@@ -6,8 +6,8 @@
 
 ### Integrantes
 
-* Alumno 01 (Rol)
-* Alumno 02 (Rol)
+* Pablo Cortes Vega
+* Rodrigo Vega Vasquez
 
 ### Bitácora
 

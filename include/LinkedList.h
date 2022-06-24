@@ -28,13 +28,13 @@ template <typename T>
 class LinkedList
 {
     Node<T> *head;
-    int size;
+    int length;
 
 public:
     // Constructor predeterminado
     LinkedList<T>() {
         head = nullptr;
-        size = 0;
+        length = 0;
     }
 
     /**

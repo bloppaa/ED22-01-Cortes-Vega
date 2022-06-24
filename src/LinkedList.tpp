@@ -12,7 +12,7 @@ bool LinkedList<T>::isEmpty() {
 
 template <typename T>
 int LinkedList<T>::size() {
-    return size;
+    return length;
 }
 
 template <typename T>
@@ -20,7 +20,7 @@ void LinkedList<T>::push(T *data) {
     Node<T> *node = new Node<T>(data);
     node->next = head;
     head = node;
-    size++;
+    length++;
 }
 
 template <typename T>
@@ -36,7 +36,7 @@ void LinkedList<T>::pushBack(T *data) {
         }
         aux->next = node;
     }
-    size++;
+    length++;
 }
 
 template <typename T>
@@ -51,7 +51,7 @@ T LinkedList<T>::pop() {
 
         delete aux->data;
         delete aux;
-        size--;
+        length--;
 
         return data;
     }
@@ -76,7 +76,7 @@ void LinkedList<T>::remove(int ID) {
             }
         }
     }
-    size--;
+    length--;
 }
 
 template <typename T>

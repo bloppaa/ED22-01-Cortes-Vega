@@ -1,5 +1,7 @@
 #include "CentroidTracker.h"
 
+#include <cmath>
+
 using namespace std;
 
 CentroidTracker::CentroidTracker(int maxFrames) {
@@ -79,6 +81,95 @@ vector<vector<float>> getDistances(
     return distances;
 }
 
+/**
+ * @brief Retorna una lista con los valores mínimos de cada fila de una matriz
+ * 
+ * @param distances La matriz con los valores
+ * @return vector<float> 
+ */
+vector<float> findMin(vector<vector<float>> distances) {
+    // Inicializar la lista de mínimos
+    vector<float> mins;
+
+    for (vector<float> v : distances) {
+        float min = v[0];
+        // Búsqueda del mínimo
+        for (float i : v) {
+            if (i < min)
+                min = i;
+        }
+        mins.push_back(min);
+    }
+    return mins;
+}
+
+/**
+ * @brief Retorna una lista con los índices que ordenarían la lista original.
+ * 
+ * @param v La lista original
+ * @return vector<int> La lista con los índices
+ */
+vector<int> argsort(vector<float> v) {
+    // Lista de valores con sus índices
+    vector<pair<float, int>> pairs;
+    int i = 0;
+    for (float f : v) {
+        pairs.push_back(make_pair(f, i++));
+    }
+
+    // Sort con respecto a los valores
+    sort(pairs.begin(), pairs.end(), [](auto& a, auto& b) {
+        return a.first < b.first;
+    });
+
+    // Lista con los índices
+    vector<int> indices;
+    for (pair<float, int> p : pairs) {
+        indices.push_back(p.second);
+    }
+    return indices;
+}
+
+/**
+ * @brief Retorna una lista con los índices de los valores mínimos de cada
+ * fila de una matriz.
+ * 
+ * @param distances La matriz con los valores
+ * @return vector<int> La lista con los índices
+ */
+vector<int> argmin(vector<vector<float>> distances) {
+    // Inicializar la lista de índices
+    vector<int> args;
+
+    for (vector<float> v : distances) {
+        float min = v[0];
+        int argMin = 0;
+
+        for (int i = 0; i < v.size(); i++) {
+            if (v[i] < min) {
+                min = v[i];
+                argMin = i;
+            }
+        }
+        args.push_back(argMin);
+    }
+    return args;
+}
+
+/**
+ * @brief Ordena una lista según los índices.
+ * 
+ * @param indices 
+ * @return vector<int> 
+ */
+vector<int> indexsort(vector<int> nums, vector<int> indices) {
+    vector<int> result;
+    for (int i : indices) {
+        result.push_back(nums[i]);
+    }
+    return result;
+}
+
 LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
     // Verifica que no se haya recibido ningún rectángulo nuevo
     if (rects.empty()) {
@@ -120,11 +211,22 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
         }
     }
     // Si hay personas registradas, entonces necesitamos hacer coincidir
-    // cada centroide nuevo con los centroides de las personas actuales
+    // cada centroide nuevo con los centroides actuales
     else {
         // Obtiene los centroides actuales de cada persona
         vector<pair<int, int>> peopleCentroids = getCentroids(people);
 
+        // Obtiene las distancias entre los centroides actuales y los
+        // centroides nuevos
+        vector<vector<float>> distances = getDistances(peopleCentroids, inputCentroids);
 
+        // (1) Busca el valor mínimo de cada fila
+        // (2) Crea una lista con los índices de estos valores
+        vector<int> rows = argsort(findMin(distances));
+
+        // (1) Busca el índice del valor mínimo de cada fila
+        // (2) Ordena esta lista según <rows>
+        vector<int> cols = argmin(distances);
+        cols = indexsort(cols, rows);
     }
 }

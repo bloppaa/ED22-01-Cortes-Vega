@@ -12,7 +12,7 @@
 
 ## Resumen 
 
-> Actualmente, se ha podido traspasar en casi su totalidad el algoritmo utilizado en el tutorial de python para poder realizar la deteccion y el seguimiento a las personas. Esto conlleva crear nuevos metodos y comprender el algoritmo, ya que hay mucho metodos que no existen en c++ o que son distintos a python. Por el momento no se ha podido probar ya que se requiere depuracion.
+> Actualmente, se ha podido traspasar en casi su totalidad el algoritmo utilizado en el tutorial de Python para poder realizar la detección y el seguimiento a las personas. Esto conlleva crear nuevos métodos y comprender el algoritmo, ya que hay mucho métodos que no existen en C++ o que son distintos a Python. Por el momento no se ha podido probar ya que se requiere depuración.
 
 
 ## 1. Introducción

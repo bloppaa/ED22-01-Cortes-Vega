@@ -18,40 +18,26 @@
 
 ## 1. Introducción
 
-La primera función de un reporte técnico es plasmar la información necesaria para que otras personas puedan reproducir el sistema propuesto o puedan entender su fucnionamiento . Para cumplir anterior se debe diferenciar claramente entre los artefactos de diseño e implementación. En el caso de un desarrollo tecnológico los algoritmos son importantes como componente de diseño y los programas generalmente son irrelevantes y deben resumidos o agregados en anexos en el documento. Los programas no son importantes en el documento, salvo si se quiere explicar conceptos expecíficos del lenguaje o del algoritmo implementado.
-
-La redacción debe ser formal y de modo impersonal. No se debe utlizar primera persona del singular o plural. Se debe evitar el uso de cualquier calificativo sustituyéndolo siempre utilizando datos concretos y rastreables en documentos o publicaciones a través de referencias bibliográficas. Por ejemplo, no calificar algo como: "muy importante", "sustancial", "muy usadoo" o "mucho mejor".
-
-Las comparaciones deben concretarse con hechos y datos, sin frases ambiguas o términos generales. Por ejemplo, nunca se debe redactar frases como "el método es mejor que el método B". Lo correcto es decir, el error promedio de el método A es de 5 %, correspondiendo a la mitad del error de 10% obtenido utilizando el método B". El tiempo verbal es usualmente presente. No se debe perder de vista que se está explicando ”como hacer algo”, en vez de ”qué se hizo”. Todo aspecto circunstancial es irrelevante para el documento. Por ejemplo, si se ha desarrollado en el laboratorio X, o en el curso Y, con el profesor Z, etc.
+Bien es sabido que la informática y la computación aporta en la mayoría de los aspectos de la vida. De todas las áreas en que la informática ayuda, uno de ellos es la seguridad mediante la utilización de cámaras y otros sensores para poder detectar a los individuos que circulan por un lugar, o para poder registrar distintos sucesos que ocurren en un lugar específico. Pero poco sirven todas las cámaras y sensores si es que no se utilizan con un software que sea acorde para poder ser de utilidad. Debido a esto, durante este documento se vera como se realizo un proyecto de detección de personas y conteo de estas, para poder ayudar a la tarea de un guardia de mantener la seguridad de su trabajo. 
 
 ### 1.1 Descripción del problema
 
-Dado el laboratorio describir como se entiende el problema bajo sus propias palabras.
+La empresa ACME requiere de un sistema de vigilancia para determinar cuantas personas entran y salen de una zona de un edificio. Todo esto para poder ayudar al guardia en su tarea de mantener la seguridad dentro del edificio. La empresa ACME requiere saber cuantas personas entran y salen, distinguir entre las personas y también saber quienes se repiten más. Es decir, requerimos crear un software que, mediante video, sea capaz de detectar cuantas personas entran y salen de un lugar, y que sea capaz de distinguir entre ellas.
 
 ### 1.2 Objetivos 
 
-**Objetivo General**
+**Objetivos**
 
-El fin que se desea llegar. (Comenzar con un verbo: "Construir un sistema...", "Desarrollar un sistema...", etc)
+Desarrollar un sistema que permita detectar, seguir y diferenciar distintas personas en un video:
 
-**Objetivos específicos**
+1.	Mediante la librería OpenCV, programar un software que sea capaz de detectar personas en una imagen/video de manera correcta y fiable.
+2.	Mediante la detección de personas, crear un sistema de seguimiento en base a su posición el cual sea capaz de diferenciar entre las distintas personas que se encuentran en la imagen.
+3.	Mediante el seguimiento diferenciado de personas, poder contabilizar cuantas personas traspasan una zona específica (Entrada y salida de personas)
+4.	Implementar, mediante OpenCV, un sistema en el cual el software sea capaz de reconocer a una persona que haya sido detectada anteriormente.
 
-1. Objetivo 1
-2. Objetivo 2
-3. Objetivos 3
-
-Los objetivos específicos son acciones específicas que son desarrolladas para lograr cumplir el objetivo general, por ejemplo:
-
-1. Investigar  el  estado  del  arte  de  visión  por  computador  y  audio  para  resolver  tareas de  clasificación unimodal y multimodal aplicado  al  problema  de  reconocimiento  de emociones.
-2.  Seleccionar  uno  o  dos  métodos  estudiados  en  el  estado  del  arte  para  la  estimación  de  laemoción utilizando datos unimodales o multimodales.
-3.  Implementar los métodos seleccionados utilizando el lenguaje de programación Python y laslibrerías suministradas por Pytorch.
-4.  Validar  los  resultados  por  medio  bases  de  datos  especializadas  para  el  desarrollo  deaplicaciones basadas en la estimación de la emoción y que incluyan varios modos de atributoscomo: imágenes, sonido y/o texto.
-5.  Proponer  mejoras  a  los  modelos  implementados  para  mejorar  su  desempeño  en  futurasimplementaciones o proyectos de investigación.
-6.  Difundir los resultados en medios científicos nacionales o internacionales.
 
 ### 1.3 Solución propuesta
-
-Esbozo de la solución propuesta, se espera que esta vaya evolucionando a medida que se avanza en el proyecto.
+Para poder desarrollar este código, se dividió inicialmente en 3 partes. Inicialmente, se programo las listas enlazadas las cuales guardaran la información de las personas/detecciones que vaya haciendo el software. Una vez hecho esto, se prosiguió con la detección de personas en cada imagen, para luego aplicarla a un video completo dividendo el video en distintas imágenes. Finalmente, para poder diferenciar entre las personas que se encuentran en una misma imagen, se utilizo un algoritmo que en base a los centros de detección, determina la distancia con respecto a la imagen anterior y a los nuevos centros de detección, de esta manera poder hacer un seguimiento a una persona que se encuentre en el video.
 
 ## 2. Materiales y métodos
 

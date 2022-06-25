@@ -6,8 +6,8 @@
 
 ### Integrantes
 
-* Pablo Cortes Vega
-* Rodrigo Vega Vasquez
+* Pablo Cortés Vega (20.600.436-3)
+* Rodrigo Vega Vásquez (20.881.243-2)
 
 ### Bitácora
 

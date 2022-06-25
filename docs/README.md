@@ -7,8 +7,8 @@
 
 **Alumnos:**
 
-* Alumno 01 (Rol)
-* Alumno 02 (Rol)
+* Pablo Cortés Vega (20.600.436-3)
+* Rodrigo Vega Vásquez (20.881.243-2)
 
 ## Resumen 
 
@@ -55,41 +55,42 @@ Esbozo de la solución propuesta, se espera que esta vaya evolucionando a medida
 
 ## 2. Materiales y métodos
 
-Explicar brevemente como se espera desarrollar el trabajo de implementación.
+La solución se implementó mediante el uso de un tutorial en Python sobre cómo contar personas usando un algoritmo de *seguimiento de centroides*. Dicho código no usa las estructuras de datos propuestas anteriormente, por lo que fue necesario refactorizar dicho código, no obstante, la lógica siguió siendo la misma.
 
 ### 2.1 Instalación
 
-Describir brevemente las librerías utilizadas para la instalación y programas utilizados para la ejecución del código. (Agregar una sección de anexo para describir como fueron instaladas las librerías de OpenCV y la IDE utilzada para el trabajo)
+Se usó la librería OpenCV para hacer las detecciones de personas correspondientes. En cuanto a la IDE, el proyecto se desarrolló en Visual Studio Code junto con CMake debido a la complejidad del proyecto.
 
 ### 2.2 Diseño 
 
-Explicar los componentes (módulos o clases) utilizados para resolver el problema. Indicar arquitectura propuesta, diagrama de clases u otro artefacto que estime conveniente para explicar el diseño de su implimentación.
+El programa se construyó siguiendo el paradigma de Orientación al Objeto. Hay dos
+clases principales, en las cuales se apoya todo el proyecto: `Person` y `CentroidTracker`. Además, para el almacenamiento de datos, se implementaron los TDA `LinkedList` y `Set`.
 
 ### 2.3 Implementación
 
-Explicar brevemente algunos aspectos de implementación: Por ejemplo, detector de caras utilizado. Se pueden realizar pequeñas reseñas al código para indicar elementos importantes en el trabajo.
+La clase `Person` guarda algunos datos como las coordenadas actuales del centroide
+de la persona y la cantidad de frames que dicha persona se encuentra fuera del video. Sin embargo, casi toda la algoritmia se encuentra encapsulada dentro de la clase `CentroidTracker`.
 
-Por ejemplo, 
+Esta clase tiene tres métodos principales: *registrar* una persona, *eliminar* una persona y *actualizar* una persona.
 
-#### Detector de caras
+```cpp
+class CentroidTracker
+{
+private:
+    int nextPersonID;
+    LinkedList<Person>* people;
+    int maxFrames;
 
-El detector de caras utilizado fue xxx. Para utilizarlo se debe.... El código para detectar una cara en una imagen se muestra a continuación:
+public:
+    CentroidTracker(int maxFrames);
 
-```c++
- 1. faceCascadePath = "./haarcascade_frontalface_default.xml";
- 2. faceCascade.load( faceCascadePath )
- 3. std::vector<Rect> faces;
- 4. faceCascade.detectMultiScale(frameGray, faces);
+    void regist(int x, int y);
 
- 5. for ( size_t i = 0; i < faces.size(); i++ )
- 6. {
- 7.  int x1 = faces[i].x;
- 8.  int y1 = faces[i].y;
- 9.  int x2 = faces[i].x + faces[i].width;
-10.  int y2 = faces[i].y + faces[i].height;
-11. }
+    void deregist(int personID);
+
+    LinkedList<Person>* update(std::vector<Rect>& rects);
+};
 ```
-La primera linea carga el archivo de entrenamiento... etc
 
 ## 3. Resultados obtenidos
 
@@ -101,7 +102,7 @@ La primera linea carga el archivo de entrenamiento... etc
 
 ## Anexo B: Instalación de IDE y configuración librerías OpenCV
 
-# Referecia
+# Referencia
 
 Indicar los libros, páginas web, documentos, etc. Utilizados en el trabajo. Por ejemplo:
 

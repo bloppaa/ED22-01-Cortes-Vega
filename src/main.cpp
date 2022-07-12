@@ -13,12 +13,13 @@ int main() {
     auto centroidTracker = new CentroidTracker(20);
 
     VideoCapture cap(0);
+    // VideoCapture cap(../samples/test.mp4)
     if (!cap.isOpened()) {
         cout << "Can't open video capture";
     }
 
-    string modelTxt = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/deploy.prototxt";
-    string modelBin = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/res10_300x300_ssd_iter_140000.caffemodel";
+    string modelTxt = "../model/deploy.prototxt";
+    string modelBin = "../model/res10_300x300_ssd_iter_140000.caffemodel";
 
     cout << "Loading model.." << endl;
     auto net = dnn::readNetFromCaffe(modelTxt, modelBin);

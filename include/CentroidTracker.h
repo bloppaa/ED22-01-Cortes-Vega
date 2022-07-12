@@ -7,7 +7,7 @@
 #include <opencv2/videoio.hpp>
 
 #include <vector>
-#include "LinkedList.h"
+#include "List.h"
 #include "Person.h"
 
 /**
@@ -20,7 +20,7 @@ class CentroidTracker
 private:
     // Cada persona nueva que entra tiene un ID único.
     int nextPersonID;
-    LinkedList<Person> *people;
+    List<Person> people;
     // La cantidad máxima de frames que una persona puede estar
     // fuera de alcande antes de ser eliminada.
     int maxFrames;
@@ -50,7 +50,7 @@ public:
      * @param rects La lista de rectángulos detectados por el detector.
      * @return LinkedList<Person>* La lista de personas.
      */
-    LinkedList<Person> *update(std::vector<cv::Rect> rects);
+    List<Person> update(List<List<int>> rects);
 };
 
 #endif // CENTROID_TRACKER_H

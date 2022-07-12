@@ -11,7 +11,6 @@ add_executable(
     taller
     src/Set.cpp
     src/Person.cpp
-    src/Detector.cpp
     src/CentroidTracker.cpp
     src/main.cpp
 )

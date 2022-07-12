@@ -7,18 +7,18 @@ using namespace std;
 
 CentroidTracker::CentroidTracker(int maxFrames) {
     nextPersonID = 0;
-    people = new LinkedList<Person>();
+    people = List<Person>();
     this->maxFrames = maxFrames;
 }
 
 void CentroidTracker::regist(int x, int y) {
-    Person* p = new Person(nextPersonID, x, y);
-    people->pushBack(p);
+    Person p = Person(nextPersonID, x, y);
+    people.push_back(p);
     nextPersonID++;
 }
 
 void CentroidTracker::deregist(int personID) {
-    people->remove(personID);
+    people.remove(personID);
 }
 
 /**
@@ -27,13 +27,11 @@ void CentroidTracker::deregist(int personID) {
  * @param people La lista de personas
  * @return std::vector<std::pair<int, int>> La lista de centroides
  */
-vector<pair<int, int>> getCentroids(LinkedList<Person>* people) {
+vector<pair<int, int>> getCentroids(List<Person> people) {
     vector<pair<int, int>> centroids;
     // Itera la lista de personas
-    Node<Person>* it = people->front();
-    while (it != nullptr) {
-        Person* p = it->data;
-        pair<int, int> centroid = make_pair(p->getX(), p->getY());
+    for (Person &p : people) {
+        pair<int, int> centroid = make_pair(p.getX(), p.getY());
         centroids.push_back(centroid);
     }
     return centroids;
@@ -171,23 +169,19 @@ vector<int> indexsort(vector<int> nums, vector<int> indices) {
     return result;
 }
 
-LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
+List<Person> CentroidTracker::update(List<List<int>> rects) {
     // Verifica que no se haya recibido ningún rectángulo nuevo
     if (rects.empty()) {
         // Itera la lista de personas e incrementa la cantidad de frames
         // desaparecidos de cada uno en 1
-        Node<Person>* it = people->front();
-        while (it != nullptr) {
-            Person* p = it->data;
+        for (Person &p : people) {
             // Incrementa la cantidad de frames desaparecidos en 1
-            p->setFramesDissappeared(p->getFramesDissappeared() + 1);
+            p.setFramesDissappeared(p.getFramesDissappeared() + 1);
 
             // Si la persona supera la cantidad máxima de frames que puede
             // estar desaparecida se elimina de la lista
-            if (p->getFramesDissappeared() > maxFrames)
-                deregist(p->getID());
-
-            it = it->next;
+            if (p.getFramesDissappeared() > maxFrames)
+                deregist(p.getID());
         }
         // Retorna antes ya que no hay información nueva para actualizar
         return people;
@@ -197,16 +191,16 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
     vector<pair<int, int>> inputCentroids;
 
     // Calcula los centroides de cada rectángulo y los añade a la matriz
-    for (cv::Rect r : rects) {
-        int cX = (int)((r.x + r.width) / 2);
-        int cY = (int)((r.y + r.height) / 2);
+    for (List<int> v : rects) {
+        int cX = (int)((v[0] + v[2]) / 2);
+        int cY = (int)((v[1] + v[3]) / 2);
 
         inputCentroids.push_back(make_pair(cX, cY));
     }
 
     // Si no hay personas registradas, registramos cada una de ellas con los
     // centroides calculados anteriormente
-    if (people->isEmpty()) {
+    if (people.empty()) {
         for (pair<int, int> c : inputCentroids) {
             regist(c.first, c.second);
         }
@@ -246,10 +240,10 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
             
             // De lo contrario, obtiene la persona, actualiza su centroide,
             // y reinicia los frames que estuvo desaparecida
-            Person* person = people->get(rows[i]);
-            person->setX(inputCentroids[cols[i]].first);
-            person->setY(inputCentroids[cols[i]].second);
-            person->setFramesDissappeared(0);
+            Person &person = people.get(rows[i]);
+            person.setX(inputCentroids[cols[i]].first);
+            person.setY(inputCentroids[cols[i]].second);
+            person.setFramesDissappeared(0);
 
             // Indicar que ya revisamos las filas y columnas
             usedRows.add(rows[i]);
@@ -266,11 +260,11 @@ LinkedList<Person>* CentroidTracker::update(vector<cv::Rect> rects) {
         if (distances.size() > distances[0].size()) {
             S_Node *node = unusedRows.front();
             while (node != nullptr) {
-                Person* person = people->get(node->data);
-                person->setFramesDissappeared(person->getFramesDissappeared() + 1);
+                Person &person = people.get(node->data);
+                person.setFramesDissappeared(person.getFramesDissappeared() + 1);
 
-                if (person->getFramesDissappeared() > maxFrames)
-                    deregist(person->getID());
+                if (person.getFramesDissappeared() > maxFrames)
+                    deregist(person.getY());
                 
                 node = node->next;
             }

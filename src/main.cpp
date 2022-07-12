@@ -1,43 +1,76 @@
-#include <opencv2/objdetect.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/videoio.hpp>
-
 #include <iostream>
-#include <iomanip>
-
-#include "Detector.h"
-#include "Person.h"
+#include <centroidtracker.h>
+#include <opencv2/dnn.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui.hpp>
+#include "List.h"
 
 using namespace cv;
+using namespace std;
 
-/*
-int main(int argc, char **argv) {
-    Detector detector;
-    Mat image;
-    image = imread("C:/Users/pc/Pictures/images/image1679.png");
-    detector.toggleMode();
-    std::cout << detector.modeName() << std::endl;
-    
-    std::vector<Person> found = detector.detect(image);
-    for (std::vector<Person>::iterator it = found.begin(); it != found.end(); it++) {
-        Person &p = *it;
-        std::cout
-            << "(" << p.getXStart() << ", " << p.getYStart()
-            << ")" << std::endl;
+int main() {
+    cout << "Hello, Tracker!" << endl;
+    auto centroidTracker = new CentroidTracker(20);
 
-        rectangle(
-            image, Point(p.getXStart(), p.getYStart()),
-            Point(p.getXEnd(), p.getYEnd()), Scalar(0, 255, 0), 2
-            );
-        circle(
-            image, Point(p.getXCenter(), p.getYCenter()), 3,
-            Scalar(0, 0, 255), 3
-            );
+    VideoCapture cap(0);
+    if (!cap.isOpened()) {
+        cout << "Can't open video capture";
     }
-    imshow("People detector", image);
-    waitKey(0);
-    
+
+    string modelTxt = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/deploy.prototxt";
+    string modelBin = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/res10_300x300_ssd_iter_140000.caffemodel";
+
+    cout << "Loading model.." << endl;
+    auto net = dnn::readNetFromCaffe(modelTxt, modelBin);
+
+    cout << "Starting video stream" << endl;
+    while (cap.isOpened()) {
+        Mat cameraFrame;
+        cap.read(cameraFrame);
+
+        resize(cameraFrame, cameraFrame, Size(400, 300));
+        auto inputBlob = dnn::blobFromImage(cameraFrame, 1.0, Size(400, 300), Scalar(104.0, 177.0, 123.0));
+
+        net.setInput(inputBlob);
+        auto detection = net.forward("detection_out");
+        Mat detectionMat(detection.size[2], detection.size[3], CV_32F, detection.ptr<float>());
+
+        List<List<int>> boxes;
+
+        float confidenceThreshold = 0.2;
+        for (int i = 0; i < detectionMat.rows; i++) {
+            float confidence = detectionMat.at<float>(i, 2);
+
+            if (confidence > confidenceThreshold) {
+                int xLeftTop = static_cast<int>(detectionMat.at<float>(i, 3) * cameraFrame.cols);
+                int yLeftTop = static_cast<int>(detectionMat.at<float>(i, 4) * cameraFrame.rows);
+                int xRightBottom = static_cast<int>(detectionMat.at<float>(i, 5) * cameraFrame.cols);
+                int yRightBottom = static_cast<int>(detectionMat.at<float>(i, 6) * cameraFrame.rows);
+
+                Rect object((int) xLeftTop, (int) yLeftTop, (int) (xRightBottom - xLeftTop),
+                            (int) (yRightBottom - yLeftTop));
+                rectangle(cameraFrame, object, Scalar(0, 255, 0), 2);
+
+                List<int> points = List<int>({xLeftTop, yLeftTop, xRightBottom, yRightBottom});
+
+                boxes.push_back(points);
+            }
+        }
+        auto objects = centroidTracker->update(boxes);
+
+        if (!objects.empty()) {
+            for (auto obj: objects) {
+                circle(cameraFrame, Point(obj.getX(), obj.getY()), 4, Scalar(255, 0, 0), -1);
+                string ID = std::to_string(obj.getID());
+                cv::putText(cameraFrame, ID, Point(obj.getX() - 10, obj.getY() - 10),
+                            FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
+            }
+        }
+        imshow("Detection", cameraFrame);
+        char c = (char)waitKey(15);
+        if (c == 27)
+            break;
+    }
+    delete centroidTracker;
     return 0;
 }
-*/

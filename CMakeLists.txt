@@ -4,7 +4,9 @@ project(taller VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-find_package(OpenCV REQUIRED)
+find_package(
+    OpenCV REQUIRED
+    )
 include_directories(${OpenCV_INCLUDE_DIRS} include)
 
 add_executable(

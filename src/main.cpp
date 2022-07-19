@@ -17,8 +17,8 @@ int main() {
         cout << "Cannot open camera";
     }
 
-    String modelTxt = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/deploy.prototxt";
-    String modelBin = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/res10_300x300_ssd_iter_140000.caffemodel";
+    String modelTxt = "../model/deploy.prototxt";
+    String modelBin = "../model/res10_300x300_ssd_iter_140000.caffemodel";
 
     cout << "Loading model.." << endl;
     auto net = dnn::readNetFromCaffe(modelTxt, modelBin);

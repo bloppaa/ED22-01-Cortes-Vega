@@ -1,56 +1,26 @@
 #ifndef CENTROID_TRACKER_H
 #define CENTROID_TRACKER_H
 
-#include <opencv2/objdetect.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/videoio.hpp>
-
+#include <map>
 #include <vector>
-#include "List.h"
-#include "Person.h"
 
-/**
- * @brief Clase que se encarga de los cálculos necesarios para
- * hacer el seguimiento de centroides de personas.
- * 
- */
 class CentroidTracker
 {
-private:
-    // Cada persona nueva que entra tiene un ID único.
-    int nextPersonID;
-    List<Person> people;
-    // La cantidad máxima de frames que una persona puede estar
-    // fuera de alcande antes de ser eliminada.
-    int maxFrames;
+    int nextObjectID;
+    std::map<int, std::pair<int, int>> objects;
+    std::map<int, int> disappeared;
+    int maxDisappeared;
 
 public:
-    CentroidTracker(int maxFrames);
+    CentroidTracker();
 
-    /**
-     * @brief Ingresa una persona nueva a la lista de personas.
-     * 
-     * @param x Coordenada x del centroide inicial de la persona.
-     * @param y Coordenada y del centroide inicial de la persona.
-     */
-    void regist(int x, int y);
+    CentroidTracker(int maxDisappeared);
 
-    /**
-     * @brief Elimina la persona especificada de la lista de personas.
-     * 
-     * @param personID El ID de la persona.
-     */
-    void deregist(int personID);
+    void registr(std::pair<int, int> centroid);
 
-    /**
-     * @brief Actualiza el centroide de una persona con respecto al frame
-     * anterior. También registra y elimina personas según sea necesario.
-     * 
-     * @param rects La lista de rectángulos detectados por el detector.
-     * @return LinkedList<Person>* La lista de personas.
-     */
-    List<Person> update(List<List<int>> rects);
+    void deregister(int objectID);
+
+    std::map<int, std::pair<int, int>> update(std::vector<std::vector<int>> rects);
 };
 
 #endif // CENTROID_TRACKER_H

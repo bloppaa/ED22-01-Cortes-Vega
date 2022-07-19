@@ -1,25 +1,24 @@
 #include <iostream>
-#include <centroidtracker.h>
+#include "centroidtracker.h"
 #include <opencv2/dnn.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
-#include "List.h"
 
 using namespace cv;
 using namespace std;
 
 int main() {
-    cout << "Hello, Tracker!" << endl;
-    auto centroidTracker = new CentroidTracker(20);
+    std::cout << "Hello, Tracker!" << std::endl;
+    auto centroidTracker = new CentroidTracker(10);
 
     VideoCapture cap(0);
-    // VideoCapture cap(../samples/test.mp4)
+    // VideoCapture cap("../../test2.mp4");
     if (!cap.isOpened()) {
-        cout << "Can't open video capture";
+        cout << "Cannot open camera";
     }
 
-    string modelTxt = "../model/deploy.prototxt";
-    string modelBin = "../model/res10_300x300_ssd_iter_140000.caffemodel";
+    String modelTxt = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/deploy.prototxt";
+    String modelBin = "C:/Users/pc/Desktop/Centroid-Object-Tracking/model/res10_300x300_ssd_iter_140000.caffemodel";
 
     cout << "Loading model.." << endl;
     auto net = dnn::readNetFromCaffe(modelTxt, modelBin);
@@ -36,7 +35,7 @@ int main() {
         auto detection = net.forward("detection_out");
         Mat detectionMat(detection.size[2], detection.size[3], CV_32F, detection.ptr<float>());
 
-        List<List<int>> boxes;
+        vector<vector<int>> boxes;
 
         float confidenceThreshold = 0.2;
         for (int i = 0; i < detectionMat.rows; i++) {
@@ -52,23 +51,22 @@ int main() {
                             (int) (yRightBottom - yLeftTop));
                 rectangle(cameraFrame, object, Scalar(0, 255, 0), 2);
 
-                List<int> points = List<int>({xLeftTop, yLeftTop, xRightBottom, yRightBottom});
-
-                boxes.push_back(points);
+                boxes.insert(boxes.end(), {xLeftTop, yLeftTop, xRightBottom, yRightBottom});
             }
         }
+
         auto objects = centroidTracker->update(boxes);
 
         if (!objects.empty()) {
             for (auto obj: objects) {
-                circle(cameraFrame, Point(obj.getX(), obj.getY()), 4, Scalar(255, 0, 0), -1);
-                string ID = std::to_string(obj.getID());
-                cv::putText(cameraFrame, ID, Point(obj.getX() - 10, obj.getY() - 10),
+                circle(cameraFrame, Point(obj.second.first, obj.second.second), 4, Scalar(255, 0, 0), -1);
+                string ID = std::to_string(obj.first);
+                cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
                             FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
             }
         }
         imshow("Detection", cameraFrame);
-        char c = (char)waitKey(15);
+        char c = (char) waitKey(15);
         if (c == 27)
             break;
     }

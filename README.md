@@ -13,11 +13,9 @@
 
 [Ver Bitácora](docs/BITACORA.md)
 
-### Resumen
+### Vídeo explicativo
 
-<Agregar el resumen del reporte técnico>
-
-<Colocar alguna imágen en la portada>
+<https://drive.google.com/file/d/1MveSRMoCwwb2OBH7roUqEEIviERs3VAg/view?usp=sharing>
 
 ### Documentos
 
